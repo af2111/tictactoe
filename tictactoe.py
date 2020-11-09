@@ -24,12 +24,12 @@ class Board:
     def updateBoard(self, col, row, char):
         if self.board[col][row] == " ":
             self.board[col][row] = char
-            print("Board wurde updated.")
+            print("Board was updated.")
         elif self.board[col][row] != " ":
-            print("Feld ist besetzt. Bitte versuche es erneut.")
+            print("Field is taken. Please try again.")
             return 0
         else:
-            print("Ein Fehler ist aufgetreten. Wir bitten um dein Verständnis.")
+            print("An error occured.")
     #check den winner
     def checkWinner(self):
         for i in range(len(self.board)):
@@ -52,31 +52,31 @@ def gameloop():
     while True:
         while True:
             try:
-                col = int(input("In welcher Zeile?")) - 1
-                row = int(input("In welcher Spalte? ")) - 1
+                col = int(input("In which row?")) - 1
+                row = int(input("In which Column? ")) - 1
                 system("clear")
                 
 
                 break
             except ValueError:
                 system("clear")
-                print("Ungültige Zahl. Gib neue Werte an.")
+                print("Invalid Number. Please try again.")
             
         try:
             if board.updateBoard(col, row, char) == 0:
                 gameloop.count -= 1
             break
         except IndexError:
-            print("Bitte gib als Zahl nur 1, 2 oder 3 an. Gib nun neue Zahlen an.")
+            print("Number is too high/low. Please only use numbers 1 to 3")
 
     if board.checkWinner() == 'x':
-        print("x hat gewonnen!")
+        print("x has won!")
         return
     elif board.checkWinner() == 'o':
-        print("o hat gewonnen!")
+        print("o has won!")
         return
     elif board.fullBoard() and board.checkWinner() == 0:
-        print("Unentschieden!")
+        print("Tie!")
         return
     gameloop.count += 1
     gameloop()
